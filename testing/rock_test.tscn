@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dln1r0pey5dae"]
+
+[ext_resource type="Script" uid="uid://b0ffrl6x8cy1v" path="res://testing/rock_test_scene.gd" id="1_7tbud"]
+[ext_resource type="Script" uid="uid://dees8kqeemn30" path="res://testing/look_camera.gd" id="2_pak3d"]
+
+[node name="RockTest3D" type="Node3D" unique_id=1511732012]
+script = ExtResource("1_7tbud")
+camera_path = NodePath("LookCamera")
+
+[node name="LookCamera" type="Camera3D" parent="." unique_id=237436692]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 2.4, 18)
+projection = 1
+size = 16.0
+far = 160.0
+script = ExtResource("2_pak3d")
+pan_speed = 10.0
+max_ortho_size = 34.0
