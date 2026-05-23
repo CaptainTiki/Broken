@@ -1,8 +1,8 @@
 extends Camera3D
 
-@export var game_target_offset: Vector3 = Vector3(0.0, 3.5, 13.5)
-@export var game_orthographic_size: float = 7.5
-@export var game_rotation_degrees: Vector3 = Vector3(-30.0, 0.0, 0.0)
+@export var game_target_offset: Vector3 = Vector3(0.0, 4.5, 15.5)
+@export var game_orthographic_size: float = 20
+@export var game_rotation_degrees: Vector3 = Vector3(-15.0, 0.0, 0.0)
 @export var follow_smoothing: float = 7.5
 @export var dev_pan_speed: float = 9.0
 @export var dev_fast_multiplier: float = 2.2

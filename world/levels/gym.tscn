@@ -1,0 +1,392 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://world/levels/level.tscn" id="1_level"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.28, 0.3, 0.31, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jump"]
+albedo_color = Color(0.34, 0.39, 0.43, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dash"]
+albedo_color = Color(0.24, 0.34, 0.39, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ceiling"]
+albedo_color = Color(0.42, 0.36, 0.36, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground_plane"]
+size = Vector3(240, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground_plane"]
+size = Vector3(240, 0.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_horizontal_block"]
+size = Vector3(2, 1, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_horizontal_block"]
+size = Vector3(2, 1, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dash_landing_block"]
+size = Vector3(5, 1, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dash_landing_block"]
+size = Vector3(5, 1, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_single_height_standard"]
+size = Vector3(2, 2.25, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_single_height_standard"]
+size = Vector3(2, 2.25, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_single_height_expert"]
+size = Vector3(2, 2.35, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_single_height_expert"]
+size = Vector3(2, 2.35, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_double_height_standard"]
+size = Vector3(2, 3.5, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_double_height_standard"]
+size = Vector3(2, 3.5, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_double_height_expert"]
+size = Vector3(2, 3.75, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_double_height_expert"]
+size = Vector3(2, 3.75, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_low_hop_platform"]
+size = Vector3(2, 0.5, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_low_hop_platform"]
+size = Vector3(2, 0.5, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ceiling"]
+size = Vector3(10, 0.4, 1.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ceiling"]
+size = Vector3(10, 0.4, 1.4)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gym"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_gym"]
+sky_material = SubResource("ProceduralSkyMaterial_gym")
+
+[sub_resource type="Environment" id="Environment_gym"]
+background_mode = 2
+sky = SubResource("Sky_gym")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" instance=ExtResource("1_level")]
+
+[node name="PlayerSpawn" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.9, 0)
+
+[node name="Terrain" type="Node3D" parent="Geometry" index="0"]
+
+[node name="GroundPlane" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94, -0.1, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/GroundPlane"]
+shape = SubResource("BoxShape3D_ground_plane")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/GroundPlane"]
+mesh = SubResource("BoxMesh_ground_plane")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="SingleJumpStandardHeightBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.125, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/SingleJumpStandardHeightBlock"]
+shape = SubResource("BoxShape3D_single_height_standard")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/SingleJumpStandardHeightBlock"]
+mesh = SubResource("BoxMesh_single_height_standard")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="SingleJumpExpertHeightBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1.175, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/SingleJumpExpertHeightBlock"]
+shape = SubResource("BoxShape3D_single_height_expert")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/SingleJumpExpertHeightBlock"]
+mesh = SubResource("BoxMesh_single_height_expert")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="DoubleJumpStandardHeightBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.75, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/DoubleJumpStandardHeightBlock"]
+shape = SubResource("BoxShape3D_double_height_standard")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/DoubleJumpStandardHeightBlock"]
+mesh = SubResource("BoxMesh_double_height_standard")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="DoubleJumpExpertHeightBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.875, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/DoubleJumpExpertHeightBlock"]
+shape = SubResource("BoxShape3D_double_height_expert")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/DoubleJumpExpertHeightBlock"]
+mesh = SubResource("BoxMesh_double_height_expert")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="StandardSingleGapBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/StandardSingleGapBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/StandardSingleGapBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="SingleGapStartBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/SingleGapStartBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/SingleGapStartBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="ExpertSingleGapBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.75, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/ExpertSingleGapBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/ExpertSingleGapBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="StandardDoubleGapBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.25, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/StandardDoubleGapBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/StandardDoubleGapBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="ExpertDoubleGapBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/ExpertDoubleGapBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/ExpertDoubleGapBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="DashStandardStartBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/DashStandardStartBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/DashStandardStartBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_dash")
+
+[node name="DashStandardBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.5, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/DashStandardBlock"]
+shape = SubResource("BoxShape3D_dash_landing_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/DashStandardBlock"]
+mesh = SubResource("BoxMesh_dash_landing_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_dash")
+
+[node name="DashExpertBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.75, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/DashExpertBlock"]
+shape = SubResource("BoxShape3D_dash_landing_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/DashExpertBlock"]
+mesh = SubResource("BoxMesh_dash_landing_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_dash")
+
+[node name="JumpDashStandardBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/JumpDashStandardBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/JumpDashStandardBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_dash")
+
+[node name="JumpDashExpertBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 0.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/JumpDashExpertBlock"]
+shape = SubResource("BoxShape3D_horizontal_block")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/JumpDashExpertBlock"]
+mesh = SubResource("BoxMesh_horizontal_block")
+surface_material_override/0 = SubResource("StandardMaterial3D_dash")
+
+[node name="StandardLowHopPlatformA" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136, 0.25, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/StandardLowHopPlatformA"]
+shape = SubResource("BoxShape3D_low_hop_platform")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/StandardLowHopPlatformA"]
+mesh = SubResource("BoxMesh_low_hop_platform")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="StandardLowHopPlatformB" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 0.25, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/StandardLowHopPlatformB"]
+shape = SubResource("BoxShape3D_low_hop_platform")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/StandardLowHopPlatformB"]
+mesh = SubResource("BoxMesh_low_hop_platform")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="StandardCeilingCutBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138, 3.7, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/StandardCeilingCutBlock"]
+shape = SubResource("BoxShape3D_ceiling")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/StandardCeilingCutBlock"]
+mesh = SubResource("BoxMesh_ceiling")
+surface_material_override/0 = SubResource("StandardMaterial3D_ceiling")
+
+[node name="ExpertLowHopPlatformA" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154, 0.25, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/ExpertLowHopPlatformA"]
+shape = SubResource("BoxShape3D_low_hop_platform")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/ExpertLowHopPlatformA"]
+mesh = SubResource("BoxMesh_low_hop_platform")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="ExpertLowHopPlatformB" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 0.25, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/ExpertLowHopPlatformB"]
+shape = SubResource("BoxShape3D_low_hop_platform")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/ExpertLowHopPlatformB"]
+mesh = SubResource("BoxMesh_low_hop_platform")
+surface_material_override/0 = SubResource("StandardMaterial3D_jump")
+
+[node name="ExpertCeilingCutBlock" type="StaticBody3D" parent="Geometry/Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156, 3.2, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Terrain/ExpertCeilingCutBlock"]
+shape = SubResource("BoxShape3D_ceiling")
+
+[node name="Visual" type="MeshInstance3D" parent="Geometry/Terrain/ExpertCeilingCutBlock"]
+mesh = SubResource("BoxMesh_ceiling")
+surface_material_override/0 = SubResource("StandardMaterial3D_ceiling")
+
+[node name="Labels" type="Node3D" parent="Environment" index="0"]
+
+[node name="SingleJumpStandardHeightLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 5, 4.1, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Single Jump Standard: 2.25m"
+font_size = 38
+
+[node name="SingleJumpExpertHeightLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 11.5, 4.2, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Single Jump Expert: 2.35m"
+font_size = 38
+
+[node name="DoubleJumpStandardHeightLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 19, 5.3, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Double Jump Standard: 3.5m"
+font_size = 38
+
+[node name="DoubleJumpExpertHeightLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 25, 5.6, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Double Jump Expert: 3.75m"
+font_size = 38
+
+[node name="StandardSingleGapLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 37.5, 3, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Single Gap Standard: 5.0m"
+font_size = 38
+
+[node name="ExpertSingleGapLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 44.875, 3, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Single Gap Expert: 5.75m"
+font_size = 38
+
+[node name="StandardDoubleGapLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 54.5, 3, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Double Gap Standard: 9.5m"
+font_size = 38
+
+[node name="ExpertDoubleGapLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 66.125, 3, 0)
+modulate = Color(0.88, 0.94, 0.96, 1)
+text = "Double Gap Expert: 9.75m"
+font_size = 38
+
+[node name="DashStandardLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 85, 3.2, 0)
+modulate = Color(0.82, 0.95, 1, 1)
+text = "Dash Standard: 4.0m"
+font_size = 38
+
+[node name="DashExpertLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 94.125, 3.2, 0)
+modulate = Color(0.82, 0.95, 1, 1)
+text = "Dash Expert: 4.25m"
+font_size = 38
+
+[node name="JumpDashStandardLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 106.625, 3.8, 0)
+modulate = Color(0.82, 0.95, 1, 1)
+text = "Jump + Dash Standard: 10.75m"
+font_size = 38
+
+[node name="JumpDashExpertLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 119.625, 3.8, 0)
+modulate = Color(0.82, 0.95, 1, 1)
+text = "Jump + Dash Expert: 11.25m"
+font_size = 38
+
+[node name="StandardCeilingCutLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 138, 4.8, 0)
+modulate = Color(0.96, 0.88, 0.88, 1)
+text = "Jump Cut Standard: ceiling 3.0m, pit 2.0m"
+font_size = 38
+
+[node name="ExpertCeilingCutLabel" type="Label3D" parent="Environment/Labels"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 156, 4.5, 0)
+modulate = Color(0.96, 0.88, 0.88, 1)
+text = "Jump Cut Expert: ceiling 2.5m, pit 2.0m"
+font_size = 38
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" index="1"]
+environment = SubResource("Environment_gym")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" index="2"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true

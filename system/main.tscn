@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dbelysojgly7d" path="res://system/game_camera.gd" id="2_camera"]
 [ext_resource type="Script" uid="uid://bbis5eg4wvwe1" path="res://system/debug_hud.gd" id="3_hud"]
 [ext_resource type="Script" uid="uid://dcrpnbgui88x0" path="res://system/player_controller.gd" id="4_player"]
+[ext_resource type="PackedScene" path="res://world/levels/gym.tscn" id="5_gym"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.35
@@ -21,20 +22,15 @@ emission_enabled = true
 emission = Color(0.443137, 1, 0.890196, 1)
 emission_energy_multiplier = 0.85
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
-size = Vector3(22, 0.08, 1.2)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ground"]
-size = Vector3(22, 1, 1.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
-albedo_color = Color(0.045, 0.055, 0.058, 1)
-
 [node name="Main" type="Node3D" unique_id=1256380797]
 script = ExtResource("1_main")
+initial_level_scene = ExtResource("5_gym")
+level_container_path = NodePath("LevelContainer")
 player_path = NodePath("Player")
 camera_path = NodePath("GameCamera")
 hud_path = NodePath("DebugHud")
+
+[node name="LevelContainer" type="Node3D" parent="." unique_id=444837799]
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1185638079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -46,16 +42,6 @@ shape = SubResource("CapsuleShape3D_player")
 [node name="PlayerMarker" type="MeshInstance3D" parent="Player" unique_id=2042813193]
 mesh = SubResource("CapsuleMesh_player")
 surface_material_override/0 = SubResource("StandardMaterial3D_player")
-
-[node name="GroundReference" type="StaticBody3D" parent="." unique_id=1630836947]
-
-[node name="GroundCollision" type="CollisionShape3D" parent="GroundReference" unique_id=623813249]
-shape = SubResource("BoxShape3D_ground")
-
-[node name="GroundVisual" type="MeshInstance3D" parent="GroundReference" unique_id=902942297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_ground")
-surface_material_override/0 = SubResource("StandardMaterial3D_ground")
 
 [node name="GameCamera" type="Camera3D" parent="." unique_id=2020696465]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 4.4, 13.5)
