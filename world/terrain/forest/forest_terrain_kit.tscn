@@ -1,0 +1,183 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_moss_top"]
+albedo_color = Color(0.188235, 0.388235, 0.192157, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_earth_face"]
+albedo_color = Color(0.25098, 0.176471, 0.117647, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shadow_earth"]
+albedo_color = Color(0.137255, 0.0980392, 0.0784314, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_flat_1"]
+size = Vector3(1, 0.45, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_flat_1"]
+size = Vector3(1, 0.45, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_flat_2"]
+size = Vector3(2, 0.45, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_flat_2"]
+size = Vector3(2, 0.45, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_flat_4"]
+size = Vector3(4, 0.45, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_flat_4"]
+size = Vector3(4, 0.45, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_slope"]
+size = Vector3(4.25, 0.35, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_slope"]
+size = Vector3(4.25, 0.35, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cliff"]
+size = Vector3(2, 3.4, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cliff"]
+size = Vector3(2, 3.4, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ledge_cap"]
+size = Vector3(2, 0.3, 1.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ledge_cap"]
+size = Vector3(2, 0.3, 1.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floating_platform"]
+size = Vector3(3, 0.45, 1.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floating_platform"]
+size = Vector3(3, 0.45, 1.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_end_cap"]
+size = Vector3(0.35, 0.85, 1.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_end_cap"]
+size = Vector3(0.35, 0.85, 1.65)
+
+[node name="ForestTerrainKit" type="Node3D"]
+
+[node name="FlatGround1m" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.225, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="FlatGround1m"]
+shape = SubResource("BoxShape3D_flat_1")
+
+[node name="Visual" type="MeshInstance3D" parent="FlatGround1m"]
+mesh = SubResource("BoxMesh_flat_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_earth_face")
+
+[node name="MossCap" type="MeshInstance3D" parent="FlatGround1m"]
+transform = Transform3D(1, 0, 0, 0, 0.08, 0, 0, 0, 1, 0, 0.24, 0)
+mesh = SubResource("BoxMesh_flat_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_moss_top")
+
+[node name="FlatGround2m" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8, 0.225, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="FlatGround2m"]
+shape = SubResource("BoxShape3D_flat_2")
+
+[node name="Visual" type="MeshInstance3D" parent="FlatGround2m"]
+mesh = SubResource("BoxMesh_flat_2")
+surface_material_override/0 = SubResource("StandardMaterial3D_earth_face")
+
+[node name="MossCap" type="MeshInstance3D" parent="FlatGround2m"]
+transform = Transform3D(1, 0, 0, 0, 0.08, 0, 0, 0, 1, 0, 0.24, 0)
+mesh = SubResource("BoxMesh_flat_2")
+surface_material_override/0 = SubResource("StandardMaterial3D_moss_top")
+
+[node name="FlatGround4m" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 0.225, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="FlatGround4m"]
+shape = SubResource("BoxShape3D_flat_4")
+
+[node name="Visual" type="MeshInstance3D" parent="FlatGround4m"]
+mesh = SubResource("BoxMesh_flat_4")
+surface_material_override/0 = SubResource("StandardMaterial3D_earth_face")
+
+[node name="MossCap" type="MeshInstance3D" parent="FlatGround4m"]
+transform = Transform3D(1, 0, 0, 0, 0.08, 0, 0, 0, 1, 0, 0.24, 0)
+mesh = SubResource("BoxMesh_flat_4")
+surface_material_override/0 = SubResource("StandardMaterial3D_moss_top")
+
+[node name="SlopeLeft" type="StaticBody3D" parent="."]
+transform = Transform3D(0.894427, -0.447214, 0, 0.447214, 0.894427, 0, 0, 0, 1, 1.25, 0.95, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="SlopeLeft"]
+shape = SubResource("BoxShape3D_slope")
+
+[node name="Visual" type="MeshInstance3D" parent="SlopeLeft"]
+mesh = SubResource("BoxMesh_slope")
+surface_material_override/0 = SubResource("StandardMaterial3D_moss_top")
+
+[node name="SlopeRight" type="StaticBody3D" parent="."]
+transform = Transform3D(0.894427, 0.447214, 0, -0.447214, 0.894427, 0, 0, 0, 1, 5.75, 0.95, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="SlopeRight"]
+shape = SubResource("BoxShape3D_slope")
+
+[node name="Visual" type="MeshInstance3D" parent="SlopeRight"]
+mesh = SubResource("BoxMesh_slope")
+surface_material_override/0 = SubResource("StandardMaterial3D_moss_top")
+
+[node name="CliffFace" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.7, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="CliffFace"]
+shape = SubResource("BoxShape3D_cliff")
+
+[node name="Visual" type="MeshInstance3D" parent="CliffFace"]
+mesh = SubResource("BoxMesh_cliff")
+surface_material_override/0 = SubResource("StandardMaterial3D_earth_face")
+
+[node name="LedgeCap" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.15, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="LedgeCap"]
+shape = SubResource("BoxShape3D_ledge_cap")
+
+[node name="Visual" type="MeshInstance3D" parent="LedgeCap"]
+mesh = SubResource("BoxMesh_ledge_cap")
+surface_material_override/0 = SubResource("StandardMaterial3D_moss_top")
+
+[node name="FloatingPlatform" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.4, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="FloatingPlatform"]
+shape = SubResource("BoxShape3D_floating_platform")
+
+[node name="Visual" type="MeshInstance3D" parent="FloatingPlatform"]
+mesh = SubResource("BoxMesh_floating_platform")
+surface_material_override/0 = SubResource("StandardMaterial3D_earth_face")
+
+[node name="MossTop" type="MeshInstance3D" parent="FloatingPlatform"]
+transform = Transform3D(1, 0, 0, 0, 0.08, 0, 0, 0, 1, 0, 0.24, 0)
+mesh = SubResource("BoxMesh_floating_platform")
+surface_material_override/0 = SubResource("StandardMaterial3D_moss_top")
+
+[node name="LeftEndCap" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.425, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="LeftEndCap"]
+shape = SubResource("BoxShape3D_end_cap")
+
+[node name="Visual" type="MeshInstance3D" parent="LeftEndCap"]
+mesh = SubResource("BoxMesh_end_cap")
+surface_material_override/0 = SubResource("StandardMaterial3D_shadow_earth")
+
+[node name="RightEndCap" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.425, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="RightEndCap"]
+shape = SubResource("BoxShape3D_end_cap")
+
+[node name="Visual" type="MeshInstance3D" parent="RightEndCap"]
+mesh = SubResource("BoxMesh_end_cap")
+surface_material_override/0 = SubResource("StandardMaterial3D_shadow_earth")

@@ -1,0 +1,229 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass"]
+albedo_color = Color(0.121569, 0.321569, 0.129412, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bush"]
+albedo_color = Color(0.0941176, 0.254902, 0.145098, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leaf_light"]
+albedo_color = Color(0.227451, 0.478431, 0.2, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bark"]
+albedo_color = Color(0.239216, 0.184314, 0.137255, 1)
+roughness = 0.98
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_root"]
+albedo_color = Color(0.184314, 0.121569, 0.0862745, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rock"]
+albedo_color = Color(0.286275, 0.321569, 0.309804, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mushroom"]
+albedo_color = Color(0.792157, 0.654902, 0.505882, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flower"]
+albedo_color = Color(0.733333, 0.839216, 0.792157, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vine"]
+albedo_color = Color(0.0666667, 0.215686, 0.109804, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg_tree"]
+albedo_color = Color(0.101961, 0.176471, 0.184314, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_grass_blade"]
+size = Vector3(0.12, 0.85, 0.08)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bush_blob"]
+radius = 0.65
+height = 0.85
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_rock"]
+radius = 0.45
+height = 0.55
+radial_segments = 7
+rings = 3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_trunk"]
+top_radius = 0.55
+bottom_radius = 0.75
+height = 6.0
+radial_segments = 7
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_root"]
+top_radius = 0.11
+bottom_radius = 0.18
+height = 2.0
+radial_segments = 6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vine"]
+top_radius = 0.035
+bottom_radius = 0.05
+height = 3.2
+radial_segments = 5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mushroom_stem"]
+top_radius = 0.08
+bottom_radius = 0.1
+height = 0.35
+radial_segments = 6
+
+[sub_resource type="SphereMesh" id="SphereMesh_mushroom_cap"]
+radius = 0.18
+height = 0.16
+radial_segments = 8
+rings = 3
+
+[sub_resource type="SphereMesh" id="SphereMesh_flower_head"]
+radius = 0.08
+height = 0.08
+radial_segments = 6
+rings = 2
+
+[node name="ForestDressingKit" type="Node3D"]
+
+[node name="GrassClumpSmall" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="BladeA" type="MeshInstance3D" parent="GrassClumpSmall"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, -0.15, 0.32, 0)
+mesh = SubResource("BoxMesh_grass_blade")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass")
+
+[node name="BladeB" type="MeshInstance3D" parent="GrassClumpSmall"]
+transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, 0.05, 0.36, 0.03)
+mesh = SubResource("BoxMesh_grass_blade")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass")
+
+[node name="BladeC" type="MeshInstance3D" parent="GrassClumpSmall"]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0.22, 0.28, -0.04)
+mesh = SubResource("BoxMesh_grass_blade")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+
+[node name="GrassClumpMedium" type="Node3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.15, 0, 0, 0, 1, -6.4, 0, 0)
+
+[node name="BladeA" type="MeshInstance3D" parent="GrassClumpMedium"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -0.28, 0.34, 0)
+mesh = SubResource("BoxMesh_grass_blade")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass")
+
+[node name="BladeB" type="MeshInstance3D" parent="GrassClumpMedium"]
+transform = Transform3D(1, 0, 0, 0, 1.18, 0, 0, 0, 1, -0.06, 0.42, 0.02)
+mesh = SubResource("BoxMesh_grass_blade")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+
+[node name="BladeC" type="MeshInstance3D" parent="GrassClumpMedium"]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0.2, 0.34, -0.03)
+mesh = SubResource("BoxMesh_grass_blade")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass")
+
+[node name="BushSmall" type="Node3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.7, 0, 0, 0, 0.55, -4.5, 0.45, 0)
+
+[node name="BlobA" type="MeshInstance3D" parent="BushSmall"]
+mesh = SubResource("SphereMesh_bush_blob")
+surface_material_override/0 = SubResource("StandardMaterial3D_bush")
+
+[node name="BlobB" type="MeshInstance3D" parent="BushSmall"]
+transform = Transform3D(0.7, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.42, 0.06, 0.08)
+mesh = SubResource("SphereMesh_bush_blob")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+
+[node name="BushLarge" type="Node3D" parent="."]
+transform = Transform3D(1.35, 0, 0, 0, 1, 0, 0, 0, 0.7, -2.3, 0.62, 0)
+
+[node name="BlobA" type="MeshInstance3D" parent="BushLarge"]
+mesh = SubResource("SphereMesh_bush_blob")
+surface_material_override/0 = SubResource("StandardMaterial3D_bush")
+
+[node name="BlobB" type="MeshInstance3D" parent="BushLarge"]
+transform = Transform3D(0.75, 0, 0, 0, 0.8, 0, 0, 0, 0.75, 0.55, 0.08, 0.08)
+mesh = SubResource("SphereMesh_bush_blob")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass")
+
+[node name="RockCluster" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="RockA" type="MeshInstance3D" parent="RockCluster"]
+transform = Transform3D(1.1, 0, 0, 0, 0.75, 0, 0, 0, 0.8, -0.25, 0, 0)
+mesh = SubResource("SphereMesh_rock")
+surface_material_override/0 = SubResource("StandardMaterial3D_rock")
+
+[node name="RockB" type="MeshInstance3D" parent="RockCluster"]
+transform = Transform3D(0.7, 0, 0, 0, 0.55, 0, 0, 0, 0.7, 0.27, -0.08, 0.04)
+mesh = SubResource("SphereMesh_rock")
+surface_material_override/0 = SubResource("StandardMaterial3D_rock")
+
+[node name="RootClump" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.17, 0)
+
+[node name="RootA" type="MeshInstance3D" parent="RootClump"]
+transform = Transform3D(0.156434, -0.987688, 0, 0.987688, 0.156434, 0, 0, 0, 1, -0.2, 0, 0)
+mesh = SubResource("CylinderMesh_root")
+surface_material_override/0 = SubResource("StandardMaterial3D_root")
+
+[node name="RootB" type="MeshInstance3D" parent="RootClump"]
+transform = Transform3D(0.34202, -0.939693, 0, 0.939693, 0.34202, 0, 0, 0, 1, 0.35, 0.05, 0.05)
+mesh = SubResource("CylinderMesh_root")
+surface_material_override/0 = SubResource("StandardMaterial3D_bark")
+
+[node name="MushroomFlowerCluster" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7, 0.18, 0)
+
+[node name="MushroomStemA" type="MeshInstance3D" parent="MushroomFlowerCluster"]
+mesh = SubResource("CylinderMesh_mushroom_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_mushroom")
+
+[node name="MushroomCapA" type="MeshInstance3D" parent="MushroomFlowerCluster"]
+transform = Transform3D(1.25, 0, 0, 0, 0.7, 0, 0, 0, 1.25, 0, 0.22, 0)
+mesh = SubResource("SphereMesh_mushroom_cap")
+surface_material_override/0 = SubResource("StandardMaterial3D_flower")
+
+[node name="MushroomStemB" type="MeshInstance3D" parent="MushroomFlowerCluster"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.28, -0.05, 0.02)
+mesh = SubResource("CylinderMesh_mushroom_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_mushroom")
+
+[node name="MushroomCapB" type="MeshInstance3D" parent="MushroomFlowerCluster"]
+transform = Transform3D(0.9, 0, 0, 0, 0.5, 0, 0, 0, 0.9, 0.28, 0.11, 0.02)
+mesh = SubResource("SphereMesh_mushroom_cap")
+surface_material_override/0 = SubResource("StandardMaterial3D_bush")
+
+[node name="FlowerA" type="MeshInstance3D" parent="MushroomFlowerCluster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33, 0.08, 0)
+mesh = SubResource("SphereMesh_flower_head")
+surface_material_override/0 = SubResource("StandardMaterial3D_flower")
+
+[node name="HangingVines" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7, 3.7, 0)
+
+[node name="VineA" type="MeshInstance3D" parent="HangingVines"]
+mesh = SubResource("CylinderMesh_vine")
+surface_material_override/0 = SubResource("StandardMaterial3D_vine")
+
+[node name="VineB" type="MeshInstance3D" parent="HangingVines"]
+transform = Transform3D(0.75, 0, 0, 0, 0.78, 0, 0, 0, 0.75, 0.35, -0.45, 0.04)
+mesh = SubResource("CylinderMesh_vine")
+surface_material_override/0 = SubResource("StandardMaterial3D_vine")
+
+[node name="LargeTreeTrunk" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.3, 0, 0, 0, 1.0, 8.1, 3, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_bark")
+
+[node name="BackgroundTreeSilhouette" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.45, 0, 0, 0, 0.8, 10.4, 3.35, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_bg_tree")

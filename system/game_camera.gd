@@ -1,8 +1,12 @@
 extends Camera3D
 
-@export var game_target_offset: Vector3 = Vector3(0.0, 4.5, 15.5)
+@export var game_target_offset: Vector3 = Vector3(0.0, 6.5, 15.5)
 @export var game_orthographic_size: float = 20
-@export var game_rotation_degrees: Vector3 = Vector3(-15.0, 0.0, 0.0)
+@export var perspective_target_offset: Vector3 = Vector3(0.0, 8.5, 56.0)
+@export var perspective_field_of_view: float = 22.0
+@export var starts_in_perspective_mode: bool = true
+@export var camera_mode_toggle_action: StringName = &"camera_mode_toggle"
+@export var game_rotation_degrees: Vector3 = Vector3(-7.5, 0.0, 0.0)
 @export var follow_smoothing: float = 7.5
 @export var dev_pan_speed: float = 9.0
 @export var dev_fast_multiplier: float = 2.2
@@ -14,12 +18,21 @@ extends Camera3D
 
 var _dev_mode: bool = false
 var _follow_target: Node3D
+var _uses_perspective_mode: bool = false
 
 
 func _ready() -> void:
 	make_current()
-	projection = Camera3D.PROJECTION_ORTHOGONAL
+	_uses_perspective_mode = starts_in_perspective_mode
 	_apply_game_framing()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(camera_mode_toggle_action):
+		_uses_perspective_mode = not _uses_perspective_mode
+		_apply_game_framing()
+		if _follow_target != null and not _dev_mode:
+			_focus_game_camera()
 
 
 func set_follow_target(target: Node3D) -> void:
@@ -36,6 +49,17 @@ func set_dev_mode(is_enabled: bool) -> void:
 
 func is_dev_mode() -> bool:
 	return _dev_mode
+
+
+func get_camera_mode_label() -> String:
+	return "Perspective %0.0f FOV" % perspective_field_of_view if _uses_perspective_mode else "Orthographic"
+
+
+func set_perspective_mode(is_enabled: bool) -> void:
+	_uses_perspective_mode = is_enabled
+	_apply_game_framing()
+	if _follow_target != null and not _dev_mode:
+		_focus_game_camera()
 
 
 func _process(delta: float) -> void:
@@ -78,9 +102,15 @@ func _focus_game_camera() -> void:
 
 
 func _apply_game_framing() -> void:
-	size = game_orthographic_size
+	if _uses_perspective_mode:
+		projection = Camera3D.PROJECTION_PERSPECTIVE
+		fov = perspective_field_of_view
+	else:
+		projection = Camera3D.PROJECTION_ORTHOGONAL
+		size = game_orthographic_size
 	rotation_degrees = game_rotation_degrees
 
 
 func _get_follow_position() -> Vector3:
-	return _follow_target.global_position + game_target_offset
+	var active_offset: Vector3 = perspective_target_offset if _uses_perspective_mode else game_target_offset
+	return _follow_target.global_position + active_offset

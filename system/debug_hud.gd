@@ -31,6 +31,8 @@ func set_debug_state(dev_mode: bool, player: Node3D, camera: Node, dev_mode_togg
 		"Player: " + _format_vector(player_position),
 		"Camera: " + _format_vector(camera_position),
 	]
+	if camera != null and camera.has_method("get_camera_mode_label"):
+		lines.insert(2, "Camera A/B: " + camera.call("get_camera_mode_label") + " | C toggles")
 	if player != null and player.has_method("get_debug_lines"):
 		lines.append_array(player.call("get_debug_lines") as PackedStringArray)
 	_debug_label.text = "\n".join(lines)
