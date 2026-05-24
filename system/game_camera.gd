@@ -2,8 +2,8 @@ extends Camera3D
 
 @export var game_target_offset: Vector3 = Vector3(0.0, 6.5, 15.5)
 @export var game_orthographic_size: float = 20
-@export var perspective_target_offset: Vector3 = Vector3(0.0, 8.5, 56.0)
-@export var perspective_field_of_view: float = 22.0
+@export var perspective_target_offset: Vector3 = Vector3(0.0, 7.5, 28.0)
+@export var perspective_field_of_view: float = 20.0
 @export var starts_in_perspective_mode: bool = true
 @export var camera_mode_toggle_action: StringName = &"camera_mode_toggle"
 @export var game_rotation_degrees: Vector3 = Vector3(-7.5, 0.0, 0.0)

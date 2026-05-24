@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dbelysojgly7d" path="res://system/game_camera.gd" id="2_camera"]
 [ext_resource type="Script" uid="uid://bbis5eg4wvwe1" path="res://system/debug_hud.gd" id="3_hud"]
 [ext_resource type="Script" uid="uid://dcrpnbgui88x0" path="res://system/player_controller.gd" id="4_player"]
-[ext_resource type="PackedScene" path="res://world/levels/forest_style_test.tscn" id="5_forest"]
+[ext_resource type="PackedScene" uid="uid://dcnorqiehairl" path="res://world/levels/forest_style_test.tscn" id="5_forest"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.35
@@ -45,7 +45,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_player")
 
 [node name="GameCamera" type="Camera3D" parent="." unique_id=2020696465]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 4.4, 13.5)
-fov = 28.0
+fov = 22.0
 far = 120.0
 script = ExtResource("2_camera")
 perspective_target_offset = Vector3(0, 8.5, 45)

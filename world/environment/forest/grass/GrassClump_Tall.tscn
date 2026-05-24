@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://grass_clump_tall"]
+
+[ext_resource type="PackedScene" uid="uid://grass_clump_base" path="res://world/environment/forest/grass/GrassClump.tscn" id="1_base"]
+
+[node name="GrassClump_Tall" instance=ExtResource("1_base")]
+base_height = 1.15
+blade_count = 4
+scale_variation = 0.15
+position_radius = 0.32
