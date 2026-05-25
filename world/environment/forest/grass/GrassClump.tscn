@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://grass_clump_base"]
+[gd_scene format=3 uid="uid://6177fvqpfg50"]
 
-[ext_resource type="Script" path="res://world/environment/forest/grass/grass_clump.gd" id="1_script"]
+[ext_resource type="Material" path="res://art/materials/forest/forest_foliage.tres" id="1_nldoi"]
+[ext_resource type="Script" uid="uid://dgm7acnkt7fui" path="res://world/environment/forest/grass/grass_clump.gd" id="1_script"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_blade"]
-size = Vector3(0.12, 0.85, 0.08)
+[sub_resource type="BoxMesh" id="BoxMesh_nldoi"]
+material = ExtResource("1_nldoi")
+size = Vector3(0.12, 0.3, 0.08)
 
-[node name="GrassClump" type="MultiMeshInstance3D"]
+[sub_resource type="MultiMesh" id="MultiMesh_2aju1"]
+transform_format = 1
+instance_count = 4
+mesh = SubResource("BoxMesh_nldoi")
+buffer = PackedFloat32Array(0.8531764, -0.03937833, -0.5198124, 0.17394847, 0.031056564, 0.90608245, -0.032464653, 0, 0.52069706, 0.010479904, 0.8536633, 0.14396897, 0.63440764, 0.09970487, -0.7679571, -0.0036824942, -0.14006801, 1.1200379, -0.0020676702, 0, 0.7602025, 0.12316185, 0.64049804, 0.21869329, 0.96233815, 0.114851736, 0.2406352, 0.05621755, -0.11573423, 0.9003223, -0.05838052, 0, -0.24598959, 0.025725042, 0.9688583, 0.10686597, 0.99521226, -0.080465935, 0.019849166, 0.010994643, 0.09621771, 0.836605, -0.027010921, 0, -0.01716485, 0.024208259, 0.99943805, 0.1434131)
+
+[node name="GrassClump" type="MultiMeshInstance3D" unique_id=886755668]
+multimesh = SubResource("MultiMesh_2aju1")
 script = ExtResource("1_script")
-blade_count = 4
-base_height = 0.85
-rotation_variation = 1.0
 scale_variation = 0.18
 position_radius = 0.28
-use_light_foliage = false

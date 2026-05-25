@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://r7kglfqrmgjc"
-path="res://.godot/imported/deciduous_one.glb-8ab757d8eafe0f2bf426237ccb81728d.scn"
+uid="uid://qfagud3w5tle"
+path="res://.godot/imported/tree_moody_bent.glb-8a630a17d0b076df0518c6ded6de6bad.scn"
 
 [deps]
 
-source_file="res://art/models/forest/deciduous_one.glb"
-dest_files=["res://.godot/imported/deciduous_one.glb-8ab757d8eafe0f2bf426237ccb81728d.scn"]
+source_file="res://art/models/forest/tree_moody_bent.glb"
+dest_files=["res://.godot/imported/tree_moody_bent.glb-8a630a17d0b076df0518c6ded6de6bad.scn"]
 
 [params]
 

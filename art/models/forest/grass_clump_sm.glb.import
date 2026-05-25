@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://rn1uanpih4np"
-path="res://.godot/imported/deciduous_two.glb-27153b02d8db7d61f83344865dbc6202.scn"
+uid="uid://cgd6u84wsppd5"
+path="res://.godot/imported/grass_clump_sm.glb-2e4b07b21d24b51f061ac7a6dfed3f98.scn"
 
 [deps]
 
-source_file="res://art/models/forest/deciduous_two.glb"
-dest_files=["res://.godot/imported/deciduous_two.glb-27153b02d8db7d61f83344865dbc6202.scn"]
+source_file="res://art/models/forest/grass_clump_sm.glb"
+dest_files=["res://.godot/imported/grass_clump_sm.glb-2e4b07b21d24b51f061ac7a6dfed3f98.scn"]
 
 [params]
 

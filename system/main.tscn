@@ -43,6 +43,9 @@ shape = SubResource("CapsuleShape3D_player")
 mesh = SubResource("CapsuleMesh_player")
 surface_material_override/0 = SubResource("StandardMaterial3D_player")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Player" unique_id=2119308407]
+light_color = Color(0.9766667, 1, 0.8, 1)
+
 [node name="GameCamera" type="Camera3D" parent="." unique_id=2020696465]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 4.4, 13.5)
 fov = 22.0
